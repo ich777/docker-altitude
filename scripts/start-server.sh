@@ -52,7 +52,7 @@ if [ -z "$(find ${SERVER_DIR}/servers -name *.xml)" ]; then
 		echo "-----------------------------------------------------------------------"
 		sleep infinity
 	fi
-    echo "---Server configuration successfully downloaded---"
+	echo "---Server configuration successfully downloaded---"
 fi
 
 echo "---Preparing Server---"
