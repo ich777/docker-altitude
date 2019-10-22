@@ -60,4 +60,4 @@ chmod -R 770 ${DATA_DIR}
 
 echo "---Starting Server---"
 cd ${SERVER_DIR}
-${SERVER_DIR}/server_launcher
+${SERVER_DIR}/server_launcher ${GAME_PARAMS}
