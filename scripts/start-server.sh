@@ -16,6 +16,7 @@ if [ ! -f ${SERVER_DIR}/server_launcher ]; then
 	chmod +x ${SERVER_DIR}/altitude.sh
 	expect <<EOF
 spawn ${SERVER_DIR}/altitude.sh -c
+set timeout 180
 expect "Where should Altitude be installed?"
 send "${SERVER_DIR}\n"
 expect "already exists. Would you like to install to that directory anyway?"
