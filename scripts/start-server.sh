@@ -1,34 +1,35 @@
 #!/bin/bash
-sleep infinity
 echo "---Checking for Altitude Server executable ---"
-if [ ! -f ${SERVER_DIR}/server_lauchner ]; then
+if [ ! -f ${SERVER_DIR}/server_launcher ]; then
 	cd ${SERVER_DIR}
-	echo "---Downloading and installing Altitude Server---"
-    wget -qi --show-progress altitude.sh ${DL_URL}
-    sleep 2
-    if [ ! -f $SERVER_DIR/altitude.sh ]; then
-    	echo "-------------------------------------------------------------"
-    	echo "---Can't download Altitude. Putting server into sleep mode---"
-        echo "-------------------------------------------------------------"
-        sleep infinity
-    fi
+	if [ ! -f ${SERVER_DIR}/altitude.sh ]; then
+		echo "---Downloading and installing Altitude Server---"
+		wget -qi --show-progress altitude.sh ${DL_URL}
+		sleep 2
+		if [ ! -f $SERVER_DIR/altitude.sh ]; then
+			echo "-------------------------------------------------------------"
+			echo "---Can't download Altitude. Putting server into sleep mode---"
+			echo "-------------------------------------------------------------"
+			sleep infinity
+		fi
+	fi
 	chmod +x ${SERVER_DIR}/altitude.sh
 	expect <<EOF
-	spawn ${SERVER_DIR}/altitude.sh -c
-	expect "Where should Altitude be installed?"
-	send "${SERVER_DIR}\n"
-	expect "already exists. Would you like to install to that directory anyway?"
-	send "1\n"
-	expect "Create symlinks?"
-	send "n\n"
-	expect "Create a desktop icon?"
-	send "n\n"
-	expect "Run Altitude?"
-	send "n\n"
-	expect "Finishing installation..."
-	exit 0
-	EOF
-	if [ ! -f $SERVER_DIR/server_lauchner ]; then
+spawn ${SERVER_DIR}/altitude.sh -c
+expect "Where should Altitude be installed?"
+send "${SERVER_DIR}\n"
+expect "already exists. Would you like to install to that directory anyway?"
+send "1\n"
+expect "Create symlinks?"
+send "n\n"
+expect "Create a desktop icon?"
+send "n\n"
+expect "Run Altitude?"
+send "n\n"
+expect "Finishing installation..."
+exit 0
+EOF
+	if [ ! -f ${SERVER_DIR}/server_launcher ]; then
 		echo "-------------------------------------------------------------------"
 		echo "---Can't install Altitude Server. Putting server into sleep mode---"
 		echo "-------------------------------------------------------------------"
