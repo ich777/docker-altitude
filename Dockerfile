@@ -10,7 +10,6 @@ RUN apt-get -y install wget expect lib32gcc1
 ENV SERVER_DIR="/altitude"
 ENV DL_URL="http://installer.altitudegame.com/0.0.1/altitude.sh"
 ENV GAME_PARAMS=""
-ENV GAME_PORT=27276
 ENV UID=99
 ENV GID=100
 
