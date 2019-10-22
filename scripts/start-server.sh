@@ -1,4 +1,5 @@
 #!/bin/bash
+sleep infinity
 echo "---Checking for Altitude Server executable ---"
 if [ ! -f ${SERVER_DIR}/server_lauchner ]; then
 	cd ${SERVER_DIR}
