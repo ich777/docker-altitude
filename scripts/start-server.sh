@@ -44,9 +44,9 @@ if [ ! -d ${SERVER_DIR}/servers ]; then
 fi
 if [ -z "$(find ${SERVER_DIR}/servers -name *.xml)" ]; then
 	echo "---No server configuration found, downloading---"
-    cd ${SERVER_DIR}/servers
-    wget -qi --show-progress launcher_config.xml https://github.com/ich777/docker-altitude/raw/master/config/launcher_config.xml
-    if [ ! -f ${SERVER_DIR}/servers/launcher_config.xml ]; then
+	cd ${SERVER_DIR}/servers
+	wget -qi --show-progress launcher_config.xml https://github.com/ich777/docker-altitude/raw/master/config/launcher_config.xml
+	if [ ! -f ${SERVER_DIR}/servers/launcher_config.xml ]; then
 		echo "-----------------------------------------------------------------------"
 		echo "---Can't download configuration file. Putting server into sleep mode---"
 		echo "-----------------------------------------------------------------------"
