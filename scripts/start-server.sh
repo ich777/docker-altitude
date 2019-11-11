@@ -62,7 +62,7 @@ if [ -z "$(find ${SERVER_DIR}/servers -name *.xml)" ]; then
 fi
 
 echo "---Preparing Server---"
-chmod -R 770 ${DATA_DIR}
+chmod -R 777 ${DATA_DIR}
 
 echo "---Starting Server---"
 cd ${SERVER_DIR}
