@@ -1,4 +1,7 @@
 #!/bin/bash
+echo "---Setting umask to ${UMASK}---"
+umask ${UMASK}
+
 echo "---Checking for Altitude Server executable ---"
 if [ ! -f ${SERVER_DIR}/server_launcher ]; then
 	cd ${SERVER_DIR}
