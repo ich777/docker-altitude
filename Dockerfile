@@ -2,10 +2,11 @@ FROM ich777/debian-baseimage
 
 LABEL maintainer="admin@minenet.at"
 
-RUN apt-get update && \
+RUN dpkg --add-architecture i386 && \
+	apt-get update && \
 	export TZ=Europe/Rome && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
-	apt-get -y install --no-install-recommends expect lib32gcc1 && \
+	apt-get -y install --no-install-recommends expect libc6:i386 && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV SERVER_DIR="/altitude"
