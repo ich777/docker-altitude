@@ -7,7 +7,12 @@ if [ ! -f ${SERVER_DIR}/server_launcher ]; then
 	cd ${SERVER_DIR}
 	if [ ! -f ${SERVER_DIR}/altitude.sh ]; then
 		echo "---Downloading and installing Altitude Server---"
-		wget -qi --show-progress altitude.sh ${DL_URL}
+		if wget -q -nc --show-progress --progress=bar:force:noscroll -O altitude.sh ${DL_URL} ; then
+        	echo "---Successfully downloaded Altitude Server executable---"
+		else
+        	echo "---Can't download Altitude Server executable putting server into sleep mode---"
+            sleep infinity
+		fi
 		sleep 2
 		if [ ! -f $SERVER_DIR/altitude.sh ]; then
 			echo "-------------------------------------------------------------"
@@ -51,7 +56,12 @@ fi
 if [ -z "$(find ${SERVER_DIR}/servers -name *.xml)" ]; then
 	echo "---No server configuration found, downloading---"
 	cd ${SERVER_DIR}/servers
-	wget -qi --show-progress launcher_config.xml https://github.com/ich777/docker-altitude/raw/master/config/launcher_config.xml
+	if wget -q -nc --show-progress --progress=bar:force:noscroll -O launcher_config.xml https://github.com/ich777/docker-altitude/raw/master/config/launcher_config.xml ; then
+    	echo "---Successfully downloaded configuration file---"
+	else
+    	echo "---Can't download configuration file putting server into sleep mode---"
+        sleep infinity
+	fi
 	if [ ! -f ${SERVER_DIR}/servers/launcher_config.xml ]; then
 		echo "-----------------------------------------------------------------------"
 		echo "---Can't download configuration file. Putting server into sleep mode---"
