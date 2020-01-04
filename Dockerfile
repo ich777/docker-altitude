@@ -1,11 +1,12 @@
-FROM ubuntu
+FROM ich777/debian-baseimage
 
-MAINTAINER ich777
+LABEL maintainer="admin@minenet.at"
 
-RUN apt-get update
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-ENV TZ=Europe/Rome
-RUN apt-get -y install wget expect lib32gcc1
+RUN apt-get update && \
+	export TZ=Europe/Rome && \
+	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
+	apt-get -y install --no-install-recommends expect lib32gcc1 && \
+	rm -rf /var/lib/apt/lists/*
 
 ENV SERVER_DIR="/altitude"
 ENV DL_URL="http://installer.altitudegame.com/0.0.1/altitude.sh"
@@ -14,15 +15,14 @@ ENV UMASK=000
 ENV UID=99
 ENV GID=100
 
-RUN mkdir $SERVER_DIR
-RUN useradd -d $SERVER_DIR -s /bin/bash --uid $UID --gid $GID altitude
-RUN chown -R altitude $SERVER_DIR
-
-RUN ulimit -n 2048
+RUN mkdir $SERVER_DIR && \
+	useradd -d $SERVER_DIR -s /bin/bash --uid $UID --gid $GID altitude && \
+	chown -R altitude $SERVER_DIR && \
+	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
-RUN chmod -R 770 /opt/scripts/
-RUN chown -R altitude /opt/scripts
+RUN chmod -R 770 /opt/scripts/ && \
+	chown -R altitude /opt/scripts
 
 USER altitude
 
