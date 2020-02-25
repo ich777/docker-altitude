@@ -15,17 +15,16 @@ ENV GAME_PARAMS=""
 ENV UMASK=000
 ENV UID=99
 ENV GID=100
+ENV DATA_PERM=770
+ENV USER="altitude"
 
 RUN mkdir $SERVER_DIR && \
-	useradd -d $SERVER_DIR -s /bin/bash --uid $UID --gid $GID altitude && \
-	chown -R altitude $SERVER_DIR && \
+	useradd -d $SERVER_DIR -s /bin/bash $USER && \
+	chown -R $USER $SERVER_DIR && \
 	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
-RUN chmod -R 770 /opt/scripts/ && \
-	chown -R altitude /opt/scripts
-
-USER altitude
+RUN chmod -R 770 /opt/scripts/
 
 #Server Start
-ENTRYPOINT ["/opt/scripts/start-server.sh"]
+ENTRYPOINT ["/opt/scripts/start.sh"]
