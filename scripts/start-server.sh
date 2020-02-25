@@ -1,7 +1,4 @@
 #!/bin/bash
-echo "---Setting umask to ${UMASK}---"
-umask ${UMASK}
-
 echo "---Checking for Altitude Server executable ---"
 if [ ! -f ${SERVER_DIR}/server_launcher ]; then
 	cd ${SERVER_DIR}
@@ -72,7 +69,7 @@ if [ -z "$(find ${SERVER_DIR}/servers -name *.xml)" ]; then
 fi
 
 echo "---Preparing Server---"
-chmod -R 777 ${DATA_DIR}
+chmod -R ${DATA_PERM} ${DATA_DIR}
 
 echo "---Starting Server---"
 cd ${SERVER_DIR}
