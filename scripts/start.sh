@@ -18,7 +18,7 @@ fi
 echo "---Starting...---"
 chown -R root:${GID} /opt/scripts
 chmod -R 750 /opt/scripts
-chown -R ${UID}:${GID} ${DATA_DIR}
+chown -R ${UID}:${GID} ${SERVER_DIR}
 
 term_handler() {
 	kill -SIGINT "$(pidof server_launcher)"
