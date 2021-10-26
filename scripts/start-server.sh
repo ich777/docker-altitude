@@ -18,6 +18,7 @@ if [ ! -f ${SERVER_DIR}/bin/server_launcher ]; then
 		echo "-----------------------------------------------------------------------------------"
 		sleep infinity
 	fi
+fi
 
 echo "---Checking for configuration file---"
 if [ ! -d ${SERVER_DIR}/servers ]; then
