@@ -16,12 +16,13 @@ else
 fi
 
 echo "---Starting...---"
-chown -R ${UID}:${GID} /opt/scripts
+chown -R root:${GID} /opt/scripts
+chmod -R 750 /opt/scripts
 chown -R ${UID}:${GID} ${DATA_DIR}
 
 term_handler() {
-	kill -SIGTERM "$(pidof java)"
-	tail --pid="$(pidof java)" -f 2>/dev/null
+	kill -SIGINT "$(pidof server_launcher)"
+	tail --pid="$(pidof server_launcher)" -f 2>/dev/null
 	exit 143;
 }
 
