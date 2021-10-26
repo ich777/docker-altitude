@@ -27,7 +27,7 @@ fi
 if [ -z "$(find ${SERVER_DIR} -name *.xml)" ]; then
 	echo "---No server configuration found, downloading---"
 	cd ${SERVER_DIR}/servers
-	if wget -q -nc --show-progress --progress=bar:force:noscroll -O launcher_config.xml https://github.com/ich777/docker-altitude/raw/master/config/launcher_config.xml ; then
+	if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${SERVER_DIR}/servers/launcher_config.xml https://github.com/ich777/docker-altitude/raw/master/config/launcher_config.xml ; then
     	echo "---Successfully downloaded configuration file---"
 	else
     	echo "---Can't download configuration file putting server into sleep mode---"
@@ -43,7 +43,7 @@ if [ -z "$(find ${SERVER_DIR} -name *.xml)" ]; then
 fi
 
 echo "---Preparing Server---"
-chmod -R ${DATA_PERM} ${DATA_DIR}
+chmod -R ${DATA_PERM} ${SERVER_DIR}
 
 echo "---Starting Server---"
 cd ${SERVER_DIR}
