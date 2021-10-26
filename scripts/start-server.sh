@@ -24,7 +24,7 @@ echo "---Checking for configuration file---"
 if [ ! -d ${SERVER_DIR}/servers ]; then
 	mkdir ${SERVER_DIR}/servers
 fi
-if [ -z "$(find ${SERVER_DIR} -name *.xml)" ]; then
+if [ -z "$(find ${SERVER_DIR}/servers -name *.xml)" ]; then
 	echo "---No server configuration found, downloading---"
 	cd ${SERVER_DIR}/servers
 	if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${SERVER_DIR}/servers/launcher_config.xml https://github.com/ich777/docker-altitude/raw/master/config/launcher_config.xml ; then
