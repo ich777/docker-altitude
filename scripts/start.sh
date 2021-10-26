@@ -21,7 +21,7 @@ chmod -R 750 /opt/scripts
 chown -R ${UID}:${GID} ${SERVER_DIR}
 
 term_handler() {
-	kill -SIGINT "$(pidof server_launcher)"
+	kill -SIGTERM "$(pidof server_launcher)"
 	tail --pid="$(pidof server_launcher)" -f 2>/dev/null
 	exit 143;
 }
